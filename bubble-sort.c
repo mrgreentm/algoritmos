@@ -19,14 +19,14 @@ void bubble_sort(int v[], int size)
     for (int i = 0; i < size - 1; i++)
     {
         flag = 0;
-        for (int j = 0; j < size - 1 - i; j++)
+        for (int j = 0; j < size - i - 1; j++)
         {
             if (v[j] > v[j + 1])
                 swap(v, j);
             flag++;
         }
         if (flag == 0)
-            return;
+            break;
     }
 }
 
