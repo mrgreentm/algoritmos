@@ -13,23 +13,19 @@ void swap(int v[], int i, int min_index)
     v[min_index] = aux;
 }
 
-int find_minor(int v[], int k, int size)
-{
-    int min_index = k;
-    for (int i = k + 1; i < size; i++)
-    {
-        if (v[i] < v[min_index])
-            min_index = i;
-    }
-    return min_index;
-}
-
 void selection_sort(int v[], int size)
 {
     int min_index = 0;
     for (int i = 0; i < size - 1; i++)
     {
-        min_index = find_minor(v, i, size);
+        min_index = i;
+        for (int j = i + 1; j < size; j++)
+
+            if (v[j] < v[min_index])
+            {
+                min_index = j;
+            }
+
         swap(v, i, min_index);
     }
 }
