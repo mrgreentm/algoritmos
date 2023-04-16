@@ -17,18 +17,10 @@ void insertion_sort(int v[], int size)
             v[i + 1] = v[i];
             v[i] = aux;
             j = i - 1;
-
-            while (j >= 0)
+            while (j >= 0 && aux < v[j])
             {
-                if (aux < v[j])
-                {
-                    v[j + 1] = v[j];
-                    v[j] = aux;
-                }
-                else
-                {
-                    break;
-                }
+                v[j + 1] = v[j];
+                v[j] = aux;
                 j--;
             }
         }
