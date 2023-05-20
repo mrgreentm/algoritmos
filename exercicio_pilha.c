@@ -245,8 +245,9 @@ int main()
     sortStack(&stackFracionaria, retirar_fracionarios);
     joinStacks(&stackTotal, &stackInteira, &stackFracionaria);
 
-    printf("Pilha ordenada: ");
+    printf("Restulado: ");
     show_stack(stackTotal);
+    printf("\n");
 
     return 0;
 }
