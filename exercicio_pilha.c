@@ -225,19 +225,19 @@ int main()
 
     createStack(stackTotal);
 
-    printf("\nDigite o numero a ser organizado: ");
+    printf("\nDigite um número decimal: ");
     pushStack(&stackTotal);
 
     break_stack(&stackTotal, &stackInteira, &stackFracionaria);
 
     if(length(stackInteira))
     {
-        printf("Digite quantos digitos deverao ser tirados da parte inteira: ");
+        printf("Digite um valor para K: ");
         retirar_inteiros = quantidade_a_retirar(length(stackInteira));
     }
         if(length(stackFracionaria))
     {
-        printf("Digite quantos digitos deverao ser tirados da parte fracionaria: ");
+        printf("Digite um valor  para W: ");
         retirar_fracionarios = quantidade_a_retirar(length(stackFracionaria));
     }
 
