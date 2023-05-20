@@ -3,18 +3,14 @@
 #include <ctype.h>
 #include "pilha.h"
 
-// Correções:
-//  - Tratamento de entrada.
-//  - Ordenação da pilha para mostrar o número ordenado da maior forma possível.
-
-void sort_stack(node **stack, int retirar)
+void sortStack(node **stack, int retirar)
 {
     node *auxStack = NULL;
     node *stackFinal = NULL;
     int min;
 
-    create_stack(auxStack);
-    create_stack(stackFinal);
+    createStack(auxStack);
+    createStack(stackFinal);
 
     while(length((*stack)))
     {
@@ -53,7 +49,7 @@ void sort_stack(node **stack, int retirar)
     *stack = stackFinal;
 }
 
-void receber_valores(node **stackTotal)
+void pushStack(node **stackTotal)
 {
     char c;
     int valid = 1;
@@ -87,7 +83,7 @@ void receber_valores(node **stackTotal)
         {
             pop(stackTotal);
         }
-        receber_valores(stackTotal);
+        pushStack(stackTotal);
     }
 }
 
@@ -121,12 +117,12 @@ int quantidade_a_retirar(int max)
     return valor;
 }
 
-void quebrar_pilha(node **stack, node **stackInteira, node **stackFracionaria)
+void break_stack(node **stack, node **stackInteira, node **stackFracionaria)
 {
     node *stackTemp = NULL;
     int isNatural = 1;
 
-    create_stack(stackTemp);
+    createStack(stackTemp);
 
     while(length(*stack) && (top(*stack) != -2) && (top(*stack) != -4))
     {
@@ -173,7 +169,7 @@ void quebrar_pilha(node **stack, node **stackInteira, node **stackFracionaria)
     }
 }
 
-void concatenar(node **stack, node **stackInteira, node **stackFracionaria)
+void joinStacks(node **stack, node **stackInteira, node **stackFracionaria)
 {
     node *stackTemp = NULL;
 
@@ -227,38 +223,28 @@ int main()
     node *stackFracionaria = NULL;
     int retirar_inteiros, retirar_fracionarios;
 
-    // Inicializa a pilha
-    create_stack(stackTotal);
+    createStack(stackTotal);
 
-    // Recebe o valor a ser organizado
     printf("\nDigite o numero a ser organizado: ");
-    receber_valores(&stackTotal);
+    pushStack(&stackTotal);
 
-    // Quebre a pilha stackTotal em duas pilhas. Uma contendo os numeros inteiros e outra a parte fracionaria.
-    quebrar_pilha(&stackTotal, &stackInteira, &stackFracionaria);
+    break_stack(&stackTotal, &stackInteira, &stackFracionaria);
 
-    // Pergunta quantos numeros serao tirados da parte inteira.
     if(length(stackInteira))
     {
         printf("Digite quantos digitos deverao ser tirados da parte inteira: ");
         retirar_inteiros = quantidade_a_retirar(length(stackInteira));
     }
-    
-    // Pergunta quantos numeros serao tirados da parte fracionaria.
-    if(length(stackFracionaria))
+        if(length(stackFracionaria))
     {
         printf("Digite quantos digitos deverao ser tirados da parte fracionaria: ");
         retirar_fracionarios = quantidade_a_retirar(length(stackFracionaria));
     }
 
-    // Ordena as pilhas separadamente.
-    sort_stack(&stackInteira, retirar_inteiros);
-    sort_stack(&stackFracionaria, retirar_fracionarios);
+    sortStack(&stackInteira, retirar_inteiros);
+    sortStack(&stackFracionaria, retirar_fracionarios);
+    joinStacks(&stackTotal, &stackInteira, &stackFracionaria);
 
-    // Concatena a parte fracionada e inteira.
-    concatenar(&stackTotal, &stackInteira, &stackFracionaria);
-
-    // Printa a pilha.
     printf("Pilha ordenada: ");
     show_stack(stackTotal);
 

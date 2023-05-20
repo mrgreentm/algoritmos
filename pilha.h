@@ -14,7 +14,7 @@ void pop(node **stack);
 int top(node *stack);
 void push(node **stack, int value);
 int length(node *stack);
-void create_stack(node *var);
+void createStack(node *var);
 
 
 void show(node *stack)
@@ -78,7 +78,7 @@ int length(node *stack)
 }
 
 
-void create_stack(node *var)
+void createStack(node *var)
 {
     var = malloc(sizeof(node));
 
